@@ -16,7 +16,6 @@ const CategoriesScreen = props => {
                 title={itemData.item.title}
                 color={itemData.item.color}
                 onSelect={() => {
-                    console.log('CLICKED');
                     props.navigation.navigate({
                         routeName: 'CategoryMeals',
                         params: {
@@ -37,9 +36,6 @@ const CategoriesScreen = props => {
             numColumns={2} />
     );
 }
-
-
-
 
 const styles = StyleSheet.create({
     screen: {

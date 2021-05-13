@@ -12,7 +12,6 @@ const CategoryMealsScreen = props => {
             complexity={itemData.item.complexity}
             affordability={itemData.item.affordability}
             onSelect={() => {
-                console.log('CLICKED');
                 props.navigation.navigate({
                     routeName: 'MealDetail',
                     params: {
