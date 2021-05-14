@@ -2,7 +2,7 @@ import React from 'react';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Colors from '../constants/Colors';
 import { Platform, Image, StyleSheet } from 'react-native';
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -13,7 +13,6 @@ import FavoritesScreen from '../screens/FavoritesScreen';
 const MealsNavigator = createStackNavigator({
     Categories: {
         screen: CategoriesScreen,
-        navigationOptions: { headerTitle: 'Meal Categories' }
     },
     CategoryMeals: {
         screen: CategoryMealsScreen
@@ -30,43 +29,50 @@ const MealsNavigator = createStackNavigator({
     }
 );
 
-const MealsFavTagNavigator = createBottomTabNavigator({
+const tabScreenConfig = {
     Meals: {
         screen: MealsNavigator,
         navigationOptions: {
             tabBarIcon: tabInfo => {
                 return (
                     <Image
-                        source={require("../assets/images/fork.png")}
+                        source={require("../assets/images/food.png")}
                         resizeMode={"contain"}
                         style={styles.tabIcon}
                     />
                 );
-            }
+            },
+            tabBarColor: Colors.primaryColor
         }
     },
-    // heart
     Favorites: {
         screen: FavoritesScreen,
         navigationOptions: {
             tabBarIcon: tabInfo => {
-                return (
-                    <Image
-                        source={require("../assets/images/heart.png")}
-                        resizeMode={"contain"}
-                        style={styles.tabIcon}
-                    />
-
-                );
-            }
+                return (<Image
+                    source={require("../assets/images/heart_white.png")}
+                    resizeMode={"contain"}
+                    style={styles.tabIcon} />);
+            },
+            tabBarColor: Colors.accentColor
         }
     }
-}, {
-    tabBarOptions: {
-        activeTintColor: Colors.accentColor
-    }
-}
-);
+};
+
+const MealsFavTabNavigator =
+    Platform.OS === 'android'
+        ? createMaterialBottomTabNavigator(tabScreenConfig, {
+            activeTintColor: 'white',
+            shifting: true,
+            barStyle: {
+                backgroundColor: Colors.primaryColor
+            }
+        })
+        : createBottomTabNavigator(tabScreenConfig, {
+            tabBarOptions: {
+                activeTintColor: Colors.accentColor
+            }
+        });
 
 
 const styles = StyleSheet.create({
@@ -76,4 +82,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default createAppContainer(MealsFavTagNavigator);
+export default createAppContainer(MealsFavTabNavigator);
