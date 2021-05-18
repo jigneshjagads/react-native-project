@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import CustomeHeaderButton from '../components/HeaderButton'
+import CustomeHeaderButton from '../components/HeaderButton';
 import { CATEGORIES } from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
 
