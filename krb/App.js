@@ -27,11 +27,6 @@ const App = () => {
     SplashScreen.hide();
   },[] )
 
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
     
         <RootNavigator />

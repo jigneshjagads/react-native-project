@@ -11,7 +11,6 @@ import styles from "./style";
 
 const DashboardScreen = ({ navigation }) => {
 
-
     return (
         <View style={styles.container}>
           <Text>Hello world</Text>
